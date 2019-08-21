@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   def dashboard
+    response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers?holder_id=#{current_user.enduser_id}", headers)
+    @ledgers = JSON.parse(response.body)
   end
 
   def send_money
@@ -36,11 +38,6 @@ class UsersController < ApplicationController
       partner_product: 'ExampleBank-GBP-1'
     }
 
-    headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "API-Key #{ENV['RAILS_BANK_API_KEY']}##{ENV['RAILS_BANK_SECRET_PATTERN']}"
-    }
     begin
       response = RestClient.post('https://play.railsbank.com/v1/customer/ledgers', payload.to_json, headers)
       body = JSON.parse(response.body)

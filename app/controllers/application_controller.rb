@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :middle_name, :last_name])
   end
+
+  def headers
+    {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "API-Key #{ENV['RAILS_BANK_API_KEY']}##{ENV['RAILS_BANK_SECRET_PATTERN']}"
+    }
+  end
 end
