@@ -54,6 +54,6 @@ class User < ApplicationRecord
 
     response = RestClient.post('https://play.rails.com/customer/ledgers', payload.to_json, headers)
     body = JSON.parse(response.body)
-    Ledger.create(user: self, api_id: body['ledger_id']
+    Ledger.create(user: self, api_id: body['ledger_id'])
   end
 end
