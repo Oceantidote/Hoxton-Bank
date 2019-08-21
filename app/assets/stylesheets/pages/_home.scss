@@ -1,1 +1,7 @@
 // Specific CSS for your home-page
+body {
+  background-color: black;
+}
+.min-height {
+  min-height: calc(100vh - 60px);
+}
