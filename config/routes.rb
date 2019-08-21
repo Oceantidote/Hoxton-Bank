@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root 'users#dashboard', as: :authenticated_root
   end
   root to: 'pages#home'
+  get "creation", to: "users#creation"
   get "dashboard", to: "users#dashboard"
   get "send_money", to: "users#send_money"
   get "dashboard", to: "users#dashboard"
