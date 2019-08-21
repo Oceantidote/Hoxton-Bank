@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  authenticated :user do
+    root 'users#dashboard', as: :authenticated_root
+  end
   get "dashboard", to: "users#dashboard"
   get "send_money", to: "users#send_money"
   get "dashboard", to: "users#dashboard"
