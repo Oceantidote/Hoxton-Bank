@@ -5,3 +5,81 @@ body {
 .min-height {
   min-height: calc(100vh - 60px);
 }
+
+.landing-splash {
+  position: absolute;
+  bottom: 20vh;
+  width: 80vw;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.landing-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.landing-welcome {
+  color: #8F8F8F;
+  font-size: 28px;
+  margin-bottom: 0;
+}
+
+.landing-hoxtonBank {
+  color: #fff;
+  font-size: 32px;
+}
+
+.landing-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.landing-left-top {
+  position: absolute;
+  top: 28vh;
+  left: 10vw;
+}
+
+.landing-right {
+  position: absolute;
+  top: 36vh;
+  right: 5vw;
+}
+
+.landing-text {
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+}
+
+.landing-middle-right {
+  position: absolute;
+  top: 28vh;
+  right: 10vw;
+}
+
+.landing-center {
+  position: absolute;
+  top: 35vh;
+  left: 50vw;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.landing-start {
+  background-color: #fff;
+  height: 15vh;
+  width: 50vw;
+  border-radius: 50px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5E5E5E;
+  font-size: 28px;
+}
