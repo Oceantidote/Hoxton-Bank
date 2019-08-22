@@ -3,7 +3,7 @@
   height: calc(100vh - 140px);
   background-color: white;
   border-radius: 20px 20px 0px 0px;
-  padding: 10vw;
+  padding: 6vw 10vw 10vw 10vw;
 }
 .hox-card {
   background-size: cover;
@@ -36,20 +36,24 @@
 }
 .transaction {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
+.light-gray {
+  color: #C8C8C8;
+}
 .transaction-image {
-  background-color: gray;
+  background-color: #E5E5E5;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20vw;
-  height: 20vw;
+  width: 12vw;
+  height: 12vw;
 }
 .transaction-details {
+  width: 60vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,4 +62,11 @@
 
 }
 
-
+.transaction-reference {
+  margin: 0;
+  font-weight: bold;
+}
+.transaction-date {
+  margin: 0;
+  font-weight: regular;
+}
