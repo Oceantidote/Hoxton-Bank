@@ -1,0 +1,12 @@
+<div class="transaction">
+  <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;"><%= ApplicationRecord.to_initials(transaction["payment_info"]["domesticInstructionAccount"]["accountName"]) %></h4></div>
+  <div class="transaction-details">
+    <div class="transaction-inner">
+      <p class="p07 transaction-reference"><%= transaction["payment_info"]["domesticInstructionAccount"]["accountName"] %></p>
+      <p class="p07 transaction-date light-gray"><%= ApplicationRecord.to_pretty(transaction["created_at"].to_datetime) %></p>
+    </div>
+    <div class="transaction-amount">
+      <p class="p07"><span class="red">- £ </span><%= ApplicationRecord.to_money(transaction["payment_info"]["currencyAndAmount"]["minorUnits"]) %></p>
+    </div>
+  </div>
+</div>

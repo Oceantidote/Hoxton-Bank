@@ -6,7 +6,11 @@ class UsersController < ApplicationController
     @accounts = []
     @ledgers.each do |ledger|
       transaction_response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger['ledger_id']}/entries", headers)
-      @accounts << { uk_id: ledger["uk_account_number"], ledger: ledger, transactions: JSON.parse(transaction_response.body) }
+      transactions = []
+      transactions = JSON.parse(transaction_response.body).map do |trans|
+        get_transaction(trans["transaction_id"])
+      end
+      @accounts << { uk_id: ledger["uk_account_number"], ledger: ledger, transactions: transactions }
     end
   end
 
@@ -37,7 +41,6 @@ class UsersController < ApplicationController
     rescue => e
       puts e.response.body
     end
-
   end
 
   def choose_beneficiary
@@ -84,12 +87,7 @@ class UsersController < ApplicationController
   def sent_confirmation
     id = params["transaction_id"]
     sleep(0.1)
-    begin
-      response = RestClient.get("https://play.railsbank.com/v1/customer/transactions/#{id}", headers)
-      @transaction = JSON.parse(response.body)
-    rescue => e
-      puts e.response.body
-    end
+    @transaction = get_transaction(id)
     ledger_id = @transaction["from_ledger_id"]
     begin
       response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger_id}", headers)
@@ -125,6 +123,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def get_transaction(id)
+    begin
+      response = RestClient.get("https://play.railsbank.com/v1/customer/transactions/#{id}", headers)
+      JSON.parse(response.body)
+    rescue => e
+      puts e.response.body
+    end
+  end
 
   def beneficiary_params
     params.require(:beneficiary).permit(:iban, :bic_swift, :sort_code, :account_number, :name, :flat, :house_number, :street, :city, :region, :post_code, :country)

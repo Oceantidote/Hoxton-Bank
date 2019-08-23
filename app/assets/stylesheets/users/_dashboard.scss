@@ -19,6 +19,10 @@
   margin-left: 10vw;
   margin-bottom: 0px;
 }
+.trans-header {
+  margin-left: 10vw;
+  margin-bottom: 10px;
+}
 .carousel-indicators {
   margin-bottom: 0px;
 }
@@ -83,7 +87,6 @@
 }
 .transaction {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 0.3rem;
@@ -101,13 +104,16 @@
   height: 12vw;
 }
 .transaction-details {
-  width: 60vw;
+  width: 68vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .transaction-inner {
-
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .p07 {
   font-size: 0.7rem;
