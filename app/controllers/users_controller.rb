@@ -11,10 +11,25 @@ class UsersController < ApplicationController
   end
 
   def send_money
+    @beneficiary_name = params[:beneficiary_name]
+    @beneficiary_id = params[:beneficiary_id]
+    @accounts = current_user.ledgers.map do |ledger|
+      JSON.parse(RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger.api_id}", headers))
+    end
   end
 
   def create_transfer
+    @sending_account = params[:account]
     @beneficiary = params[:beneficiary]
+    @amount = params[:amount]
+    to_upload = {
+      ledger_from_id: @sending_account,
+      beneficiary_id: @beneficiary,
+      amount: @amount,
+      payment_type: "payment-type-UK-FasterPayments"
+    }
+    response = RestClient.post("https://play.railsbank.com/v1/customer/transactions", to_upload.to_json, headers)
+    transction = JSON.parse(response.body)
   end
 
   def choose_beneficiary
