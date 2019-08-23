@@ -4,7 +4,10 @@
 // Define fonts for body and headers
 $body-font: "Open Sans", "Helvetica", "sans-serif";
 $headers-font: "Raleway", "Helvetica", "sans-serif";
-
+.numbers {
+  font-family: "Open Sans", "Helvetica", "sans-serif";
+  font-weight: bold;
+}
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";

@@ -6,11 +6,11 @@
         <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
           <div class="hox-card" style="background-image: url(<%= image_path('card.png') %>">
             <div class="card-head">
-              <h5 class="acct-no">**** <%= account[:uk_id].chars.last(4).join %></h5>
+              <h5 class="numbers">**** <%= account[:uk_id].chars.last(4).join %></h5>
               <h5 class="railsbank">RailsBank</h5>
             </div>
             <h6>Balance:</h6>
-            <h5 class="roboto">£ <%= account[:ledger]["amount"] %></h5>
+            <h5 class="numbers">£ <%= account[:ledger]["amount"] %></h5>
           </div>
         </div>
       <% end %>
