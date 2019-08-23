@@ -74,6 +74,7 @@ class UsersController < ApplicationController
       redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&id=#{id}"
     rescue => e
       puts e.response.body
+      raise
     end
   end
 
