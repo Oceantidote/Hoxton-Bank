@@ -1,0 +1,5 @@
+<h5>Transaction Failed</h5>
+
+<% transaction["failure_reasons"].each do |reason| %>
+  <h6><%= ApplicationRecord.convert_reason(reason) %></h6>
+<% end %>

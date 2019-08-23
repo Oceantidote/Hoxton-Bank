@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def send_money
-    @beneficiary_name = params["name"] ? params["name"] : params["person"]["name"]
+    @beneficiary_name = params["person"] ? params["person"]["name"] : params["name"]
     @beneficiary_id = params["beneficiary_id"]
     @accounts = current_user.ledgers.map do |ledger|
       JSON.parse(RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger.api_id}", headers))
@@ -31,7 +31,9 @@ class UsersController < ApplicationController
     begin
       response = RestClient.post("https://play.railsbank.com/v1/customer/transactions", to_upload.to_json, headers)
       transaction = JSON.parse(response.body)
-      redirect_to sent_confirmation_path(transaction)
+      to_upload[:name] = params[:name]
+      to_upload[:transaction_id] = transaction["transaction_id"]
+      redirect_to sent_confirmation_path(to_upload)
     rescue => e
       puts e.response.body
     end
@@ -80,6 +82,25 @@ class UsersController < ApplicationController
   end
 
   def sent_confirmation
+    id = params["transaction_id"]
+    sleep(0.1)
+    begin
+      response = RestClient.get("https://play.railsbank.com/v1/customer/transactions/#{id}", headers)
+      @transaction = JSON.parse(response.body)
+    rescue => e
+      puts e.response.body
+    end
+    ledger_id = @transaction["from_ledger_id"]
+    begin
+      response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger_id}", headers)
+      @ledgers = JSON.parse(response.body)
+      @ledger = @ledgers.select{|ledger| ledger["ledger_holder"]["enduser_id"] == current_user["enduser_id"]}.first
+    rescue => e
+      puts e.response.body
+    end
+    if @transaction["transaction_status"] == "transaction-status-pending"
+      render :sent_confirmation
+    end
   end
 
   def creation
