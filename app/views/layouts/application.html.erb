@@ -16,7 +16,9 @@
       <%= yield %>
     <% else %>
         <%= render "shared/header" %>
-        <%= yield %>
+        <div id="hold" class="view-height">
+          <%= yield %>
+        </div>
         <%= render "shared/footer" %>
     <% end %>
     <%= javascript_include_tag 'application' %>

@@ -10,8 +10,9 @@ a {
 .form-inputs {
   color: white;
 }
-.min-height {
-  height: calc(100vh - 40px);
+.view-height {
+  min-height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
 }
 
 .landing-splash {

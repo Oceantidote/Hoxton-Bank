@@ -1,4 +1,4 @@
-<div class="carousel-holder">
+<div id="carousel-holder" class="carousel-holder">
   <h4 class="dash-header">Accounts</h4>
   <div id="carouselExampleIndicators" class="carousel slide" data-interval="7500" data-ride="carousel">
     <div class="carousel-inner">
@@ -22,7 +22,7 @@
     </ol>
   </div>
 </div>
-<div class="transaction-cont">
+<div id="trans-cont" class="transaction-cont" style="height: innerHeight;">
   <% @accounts.first[:transactions].each do |transaction| %>
     <div class="transaction">
       <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
@@ -38,3 +38,27 @@
     </div>
   <% end %>
 </div>
+<script>
+  var body_height = document.getElementsByTagName("BODY")[0].clientHeight
+  var carousel_holder_height = document.getElementById("carousel-holder").clientHeight
+  var trans_cont = document.getElementById("trans-cont")
+  var height = body_height - carousel_holder_height - 60
+  trans_cont.style.height = height + "px"
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
