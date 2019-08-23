@@ -38,6 +38,7 @@ class UsersController < ApplicationController
   end
 
   def add_beneficiary
+    @errors = {}
   end
 
   def account
@@ -48,31 +49,24 @@ class UsersController < ApplicationController
     to_upload = {
       holder_id: current_user.enduser_id,
       person: {
-        name: beneficiary_params[:name],
-        address: {
-          address_refinement: beneficiary_params[:flat],
-          address_number: beneficiary_params[:house_number],
-          address_street: beneficiary_params[:street],
-          address_city: beneficiary_params[:city],
-          address_region: beneficiary_params[:region],
-          address_postal_code: beneficiary_params[:post_code],
-          address_iso_country: beneficiary_params[:country]
-        }
+        name: beneficiary_params[:name]
+      },
+      default_account: {
+        asset_class: "currency",
       }
     }
     if beneficiary_params[:account_number].present? && beneficiary_params[:sort_code].present?
-      to_upload[:uk_account_number] = beneficiary_params[:account_number]
-      to_upload[:uk_sort_code] = beneficiary_params[:sort_code]
-    elsif beneficiary_params[:iban].present? && beneficiary_params[:bic_swift].present?
-      to_upload[:iban] = beneficiary_params[:iban]
-      to_upload[:bic_swift] = beneficiary_params[:bic_swift]
+      to_upload[:default_account][:account_number] = beneficiary_params[:account_number]
+      to_upload[:default_account][:bank_code] = beneficiary_params[:sort_code]
+      to_upload[:default_account][:asset_type] = "gbp"
+      to_upload[:default_account][:bank_code_type] = "sort-code"
     else
-      @errors[:notice] = "Need to provide iban and bic swift or account_number and sort code"
+      @errors[:notice] = "Please enter account number and sort-code"
       return render :add_beneficiary
     end
     begin
       response = RestClient.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
-      id = JSON.parse(response.body)[:beneficiary_id]
+      id = JSON.parse(response.body)["beneficiary_id"]
       redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&id=#{id}"
     rescue => e
       puts e.response.body
