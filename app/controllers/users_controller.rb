@@ -68,9 +68,14 @@ class UsersController < ApplicationController
     else
       return render :add_beneficiary, notice: "Need to provide iban and bic swift or account_number and sort code"
     end
-    response = RestClient.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
-    id = JSON.parse(response.body)[:beneficiary_id]
-    redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&id=#{id}"
+    begin
+      response = JSON.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
+      id = JSON.parse(response.body)[:beneficiary_id]
+      redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&id=#{id}"
+    rescue => e
+      puts e.response.body
+      raise
+    end
   end
 
   def sent_confirmation
