@@ -1,10 +1,11 @@
 // Specific CSS for your home-page
 body {
+  max-height: 100vh;
   background-color: black;
   // color: white;
 }
 .min-height {
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 40px);
 }
 
 .landing-splash {

@@ -1,5 +1,5 @@
 .footer {
-  height: 60px;
+  height: 40px;
   padding: 1rem;
   width: 100vw;
   background-color: white;
@@ -10,4 +10,5 @@
   box-shadow:
         inset 0px 11px 8px -10px #CCC,
         inset 0px -11px 8px -10px #CCC;
+  z-index: 2000;
 }

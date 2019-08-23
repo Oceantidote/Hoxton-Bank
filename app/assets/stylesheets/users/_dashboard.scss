@@ -1,10 +1,49 @@
-.dash-cont {
-  overflow: hidden;
-  height: calc(100vh - 140px);
-  background-color: white;
-  border-radius: 20px 20px 0px 0px;
-  padding: 6vw 10vw 10vw 10vw;
+.carousel-item {
+  padding: 1.5vh 10vw 4vh 10vw;
 }
+.carousel-holder {
+  background-color: white;
+  padding-top: 3vw;
+  border-radius: 20px 20px 0px 0px;
+}
+.carousel-indicators li {
+  border-radius: 4px;
+  opacity: 0.5;
+  background-color: black;
+ .active {
+   opacity: 1;
+   background-color: black;
+ }
+}
+.dash-header {
+  margin-left: 10vw;
+  margin-bottom: 0px;
+}
+.carousel-indicators {
+  margin-bottom: 0px;
+}
+.transaction-cont {
+  background-color: white;
+  padding: 0vw 10vw;
+  overflow: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .hox-card {
   background-size: cover;
   height: calc(80vw * 0.6);
@@ -12,6 +51,15 @@
   background-repeat: no-repeat;
   color: white;
   padding: 1rem;
+}
+.zero {
+  width: 100%;
+
+}
+.one {
+  width:100%;
+  height: calc(100vh - 100px - (80vw * 0.6) - 33.25px - 3.5rem);
+  overflow: scroll;
 }
 .card-head {
   display: flex;
@@ -31,14 +79,12 @@
 .roboto {
   font-family: 'Roboto';
 }
-.transaction-holder {
-  width: 80vw;
-}
 .transaction {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 0.3rem;
 }
 .light-gray {
   color: #C8C8C8;
@@ -61,10 +107,13 @@
 .transaction-inner {
 
 }
-
+.p07 {
+  font-size: 0.7rem;
+}
 .transaction-reference {
   margin: 0;
   font-weight: bold;
+  width: 40vw;
 }
 .transaction-date {
   margin: 0;
