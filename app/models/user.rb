@@ -7,6 +7,7 @@ class User < ApplicationRecord
   before_create :create_default_end_user
 
   validates :first_name, :last_name, presence: true
+  has_many :ledgers
 
   def full_name
     "#{first_name}#{middle_name.present? ? ' ' + middle_name : ''} #{last_name}"
