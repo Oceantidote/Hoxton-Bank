@@ -21,6 +21,7 @@
       <% end %>
     </ol>
   </div>
+  <h4 class="dash-header">Transactions</h4>
 </div>
 <div id="trans-cont" class="transaction-cont" style="height: innerHeight;">
   <% @accounts.first[:transactions].each do |transaction| %>
@@ -42,8 +43,13 @@
   var body_height = document.getElementsByTagName("BODY")[0].clientHeight
   var carousel_holder_height = document.getElementById("carousel-holder").clientHeight
   var trans_cont = document.getElementById("trans-cont")
-  var height = body_height - carousel_holder_height - 60
+  var height = body_height - carousel_holder_height - 60 + 1
   trans_cont.style.height = height + "px"
+  function resize() {
+    var resheight = body_height - carousel_holder_height - 60 + 1
+    trans_cont.style.height = resheight + "px"
+  }
+  window.onresize = resize;
 </script>
 
 
