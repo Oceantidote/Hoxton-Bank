@@ -16,7 +16,7 @@
       <%= yield %>
     <% else %>
         <%= render "shared/header" %>
-        <% if controller_name == "sessions" %>
+        <% if controller_name == "sessions" || controller_name == "registrations" %>
           <div id="hold" class="flex view-height">
         <% else %>
           <div id="hold" class="view-height">

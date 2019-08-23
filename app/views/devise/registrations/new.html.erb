@@ -1,9 +1,9 @@
 <h2 class="sign-up-header">Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.error_notification %>
     <%= f.input :first_name,
                 required: true,
                 autofocus: true,
@@ -26,10 +26,10 @@
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" }, placeholder: "Password", label: false  %>
     </div>
-
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" }, placeholder: "Password Confirmation", label: false  %>
+
   </div>
 
   <div class="form-actions">
