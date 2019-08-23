@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2 class="sign-up-header">Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -7,27 +7,29 @@
     <%= f.input :first_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "first_name" } %>
+                input_html: { autocomplete: "first_name" }, placeholder: "First Name", label: false %>
     <%= f.input :middle_name,
                 required: true,
                 autofocus: true,
-                label: "Middle Name(s)",
-                input_html: { autocomplete: "middle_name" } %>
+                input_html: { autocomplete: "middle_name" }, placeholder: "Middle Name(s)", label: false  %>
     <%= f.input :last_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "last_name" } %>
+                input_html: { autocomplete: "last_name" }, placeholder: "Last Name", label: false  %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "email" }, placeholder: "Email Address", label: false  %>
+    <div class="sign-up_password">
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" }, placeholder: "Password", label: false  %>
+    </div>
+
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" }, placeholder: "Password Confirmation", label: false  %>
   </div>
 
   <div class="form-actions">
