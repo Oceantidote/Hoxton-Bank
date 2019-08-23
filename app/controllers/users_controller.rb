@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def choose_beneficiary
-    response = RestClient.get("https://play.railsbank.com/v1/customer/beneficiaries?holder_id=#{current_user.enduser_id}")
+    response = RestClient.get("https://play.railsbank.com/v1/customer/beneficiaries?holder_id=#{current_user.enduser_id}", headers)
     @beneficiaries = JSON.parse(response.body)
   end
 
@@ -49,13 +49,13 @@ class UsersController < ApplicationController
       person: {
         name: beneficiary_params[:name],
         address: {
-          address_refinement: params[:flat],
-          address_number: params[:house_number],
-          address_street: params[:street],
-          address_city: params[:city],
-          address_region: params[:region],
-          address_postal_code: params[:post_code],
-          address_iso_country: params[:country]
+          address_refinement: beneficiary_params[:flat],
+          address_number: beneficiary_params[:house_number],
+          address_street: beneficiary_params[:street],
+          address_city: beneficiary_params[:city],
+          address_region: beneficiary_params[:region],
+          address_postal_code: beneficiary_params[:post_code],
+          address_iso_country: beneficiary_params[:country]
         }
       }
     }
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     else
       return render :add_beneficiary, notice: "Need to provide iban and bic swift or account_number and sort code"
     end
-    response = JSON.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
+    response = RestClient.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
     id = JSON.parse(response.body)[:beneficiary_id]
     redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&id=#{id}"
   end
@@ -87,11 +87,11 @@ class UsersController < ApplicationController
       ledger_who_owns_assets: 'ledger-assets-owned-by-me',
       partner_product: 'ExampleBank-GBP-1'
     }
-
     begin
       response = RestClient.post('https://play.railsbank.com/v1/customer/ledgers', payload.to_json, headers)
       body = JSON.parse(response.body)
       Ledger.create(user: current_user, api_id: body['ledger_id'])
+      redirect_to dashboard_path
     rescue => e
       puts e.reponse.body
     end

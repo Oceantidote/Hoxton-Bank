@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "creation", to: "users#creation"
   get "dashboard", to: "users#dashboard"
   get "send_money", to: "users#send_money"
-  get "dashboard", to: "users#dashboard"
+  get "choose_beneficiary", to: "users#choose_beneficiary"
   post "create_transfer", to: "users#create_transfer"
   get "add_beneficiary", to: "users#add_beneficiary"
   post "create_beneficiary", to: "users#create_beneficiary"

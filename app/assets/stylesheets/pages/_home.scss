@@ -2,7 +2,11 @@
 body {
   max-height: 100vh;
   background-color: black;
-  // color: white;
+  color: white;
+}
+a {
+  text-decoration: none !important;
+  color:white;
 }
 .min-height {
   height: calc(100vh - 40px);

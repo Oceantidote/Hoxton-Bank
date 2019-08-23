@@ -1,1 +1,29 @@
-
+<div class="">
+  <h3>Choose Beneficiary</h3>
+  <%= link_to add_beneficiary_path do %>
+    <div class="transaction">
+      <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
+      <div class="transaction-details">
+        <div class="transaction-inner">
+          <p class="p07 transaction-reference">Add a new recipient</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% @beneficiaries.each do |beneficiary| %>
+    <%= link_to send_money_path(beneficiary_name: beneficiary, beneficiary_id: beneficiary.id) do  %>
+      <div class="transaction">
+        <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
+        <!-- <div class="transaction-details">
+          <div class="transaction-inner">
+            <p class="p07 transaction-reference"><%= transaction["reference"] %></p>
+            <p class="p07 transaction-date light-gray"><%= transaction["created_at"] %></p>
+          </div>
+          <div class="transaction-amount">
+            <p class="p07"><span class="light-gray">£</span><%= transaction["transaction-amount"] %></p>
+          </div>
+        </div> -->
+      </div>
+    <% end %>
+  <% end %>
+</div>
