@@ -1,26 +1,40 @@
-<div class="dash-cont">
-  <h4>Accounts</h4>
-  <div class="hox-card" style="background-image: url(<%= image_path('card.png') %>">
-    <div class="card-head">
-      <h5 class="acct-no">**** 6546</h5>
-      <h5 class="railsbank">RailsBank</h5>
+<div class="carousel-holder">
+  <h4 class="dash-header">Accounts</h4>
+  <div id="carouselExampleIndicators" class="carousel slide" data-interval="7500" data-ride="carousel">
+    <div class="carousel-inner">
+      <% @accounts.each_with_index do |account, index| %>
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+          <div class="hox-card" style="background-image: url(<%= image_path('card.png') %>">
+            <div class="card-head">
+              <h5 class="acct-no">**** <%= account[:uk_id].chars.last(4).join %></h5>
+              <h5 class="railsbank">RailsBank</h5>
+            </div>
+            <h6>Balance:</h6>
+            <h5 class="roboto">£ <%= account[:ledger]["amount"] %></h5>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <h6>Balance:</h6>
-    <h5 class="roboto">£ 3245.67</h5>
+    <ol class="carousel-indicators">
+      <% @accounts.each_with_index do |account, index| %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+      <% end %>
+    </ol>
   </div>
-  <h4 style="margin-top: 6vw;">Recent Transactions</h4>
-  <div class="transaction-holder">
+</div>
+<div class="transaction-cont">
+  <% @accounts.first[:transactions].each do |transaction| %>
     <div class="transaction">
-      <div class="transaction-image"><h4 style="margin: 0;color: white;font-weight:bold;">HR</h4></div>
+      <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
       <div class="transaction-details">
         <div class="transaction-inner">
-          <p class="transaction-reference">Lunch</p>
-          <p class="transaction-date light-gray">2.30pm 01/08/19</p>
+          <p class="p07 transaction-reference"><%= transaction["reference"] %></p>
+          <p class="p07 transaction-date light-gray"><%= transaction["created_at"] %></p>
         </div>
         <div class="transaction-amount">
-          <h6><span class="light-gray">£</span> 20.34</h6>
+          <p class="p07"><span class="light-gray">£</span><%= transaction["transaction-amount"] %></p>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

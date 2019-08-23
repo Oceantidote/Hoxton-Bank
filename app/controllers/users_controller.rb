@@ -3,10 +3,10 @@ class UsersController < ApplicationController
   def dashboard
     ledger_response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers?holder_id=#{current_user.enduser_id}", headers)
     @ledgers = JSON.parse(ledger_response.body)
-    @transactions = []
+    @accounts = []
     @ledgers.each do |ledger|
       transaction_response = RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger['ledger_id']}/entries", headers)
-      @transactions << JSON.parse(transaction_response.body)
+      @accounts << { uk_id: ledger["uk_account_number"], ledger: ledger, transactions: JSON.parse(transaction_response.body) }
     end
   end
 
