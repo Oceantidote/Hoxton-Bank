@@ -1,0 +1,38 @@
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  & a {
+    width: 80vw;
+    background-color: #31B1CC;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-radius: 50px;
+    color: white;
+  }
+}
+
+.forgot-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  & a {
+    width: 80vw;
+    background-color: transparent;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 1px solid white;
+    color: white;
+
+    &:active {
+      color: white;
+    }
+  }
+}
