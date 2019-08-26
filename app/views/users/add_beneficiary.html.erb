@@ -9,11 +9,11 @@
       <% end %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="left-margin-10vw">
-        <label for="beneficiary[name]">Name</label>
+        <label for="beneficiary[name]" class="d-block">Name</label>
         <input type="text" name="beneficiary[name]" placeholder="e.g. John Smith" class="railsbank-input bottom-margin">
-        <label for="beneficiary[account_number]">Account Number</label>
+        <label for="beneficiary[account_number]" class="d-block">Account Number</label>
         <input type="text" name="beneficiary[account_number]" placeholder="e.g. 64042816" class="railsbank-input bottom-margin">
-        <label for="beneficiary[sort_code]">Sort Code</label>
+        <label for="beneficiary[sort_code]" class="d-block">Sort Code</label>
         <input type="text" name="beneficiary[sort_code]" placeholder="e.g. 80-56-34" class="railsbank-input bottom-margin">
         <input type="submit" class="btn railsbank-btn">
       </div>
