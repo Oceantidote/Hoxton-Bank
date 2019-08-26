@@ -15,15 +15,19 @@
     <% if controller_name == "pages" %>
       <%= yield %>
     <% else %>
-        <%= render "shared/header" %>
-        <% if controller_name == "sessions" || controller_name == "registrations" %>
-          <div id="hold" class="flex view-height">
-        <% else %>
-          <div id="hold" class="view-height">
-        <% end %>
-          <%= yield %>
-        </div>
+      <%= render "shared/header" %>
+      <% if controller_name == "sessions" || controller_name == "registrations" %>
+        <div id="hold" class="flex view-height">
+      <% else %>
+        <div id="hold" class="view-height">
+      <% end %>
+        <%= yield %>
+      </div>
+      <% if controller_name == "sessions" || controller_name == "registrations" %>
+
+      <% else %>
         <%= render "shared/footer" %>
+      <% end %>
     <% end %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
