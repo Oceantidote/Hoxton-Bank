@@ -1,26 +1,33 @@
-<div class="">
-  <h3 class="sign-up-header">Choose Beneficiary</h3>
-  <%= link_to add_beneficiary_path do %>
-    <div class="transaction">
-      <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
-      <div class="transaction-details">
-        <div class="transaction-inner">
-          <p class="p07 transaction-reference">Add a new recipient</p>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <% @beneficiaries.each do |beneficiary| %>
-    <%= link_to send_money_path(beneficiary) do  %>
+<div class="view-height white-rounded-top">
+  <div class="card-section">
+    <h4 class="dash-header">Choose Beneficiary</h4>
+  </div>
+  <div class="choose-section">
+    <%= link_to add_beneficiary_path do %>
       <div class="transaction">
-        <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
+        <div class="transaction-image"><h2 style="font-size:2.8rem;margin: 0;color: white;">+</h2></div>
         <div class="transaction-details">
           <div class="transaction-inner">
-            <p class="p07 transaction-reference"><%= beneficiary["person"]["name"] %></p>
-            <p class="p07 transaction-date light-gray"><%= beneficiary["default_account"]["bank_name"] %></p>
+            <p class="p07 transaction-reference grey">Add New Beneficary</p>
           </div>
         </div>
       </div>
     <% end %>
-  <% end %>
+    <h6>Beneficiaries</h6>
+    <% @beneficiaries.each do |beneficiary| %>
+      <%= link_to send_money_path(beneficiary) do  %>
+        <div class="transaction">
+          <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;"><%= ApplicationRecord.to_initials(beneficiary["person"]["name"]) %></h4></div>
+          <div class="transaction-details">
+            <div class="transaction-inner">
+              <p class="p07 transaction-reference grey"><%= beneficiary["person"]["name"] %></p>
+              <p class="p07 transaction-reference light-gray"><%= beneficiary["uk_account_number"] %>|<%= beneficiary["default_account"]["bank_code"] %> </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+
+
