@@ -1,3 +1,16 @@
+.railsbank-btn {
+  width: 80vw;
+  background-color: #31B1CC;
+  text-align: center;
+  margin: 1.5vh 0;
+  padding: 10px 0;
+  border-radius: 50px;
+  color: white;
+  &:hover {
+    color: #fff;
+  }
+}
+
 .login-button {
   display: flex;
   align-items: center;

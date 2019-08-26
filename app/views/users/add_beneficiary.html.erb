@@ -1,35 +1,22 @@
-<form action="/create_beneficiary" method="post">
+<div class="view-height white-rounded-top">
+  <div class="card-section">
+    <h4 class="dash-header">New Beneficiary</h4>
+  </div>
+  <div class="card-section">
+    <form action="/create_beneficiary" method="post">
       <% @errors.each do |key, value| %>
         <p><%= key %>: <%= value %></p>
       <% end %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-<!--   <label for="beneficiary[name]"></label>
- -->  <input type="text" name="beneficiary[name]" placeholder="i.e. Raleigh Bank">
-      <h5>Account Details</h5>
-<!--   <label for="beneficiary[sort_code]"></label>
- -->  <input type="text" name="beneficiary[sort_code]" placeholder="i.e. 80-56-34">
-<!--   <label for="account_number"></label>
- -->  <input type="text" name="beneficiary[account_number]" placeholder="account_number">
-<!--   <label for="iban"></label>
- -->  <input type="text" name="beneficiary[iban]" placeholder="iban">
-<!--   <label for="bic_swift"></label>
- -->  <input type="text" name="beneficiary[bic_swift]" placeholder="bic_swift">
-
-      <h5>Address</h5>
-<!--   <label for="flat"></label>
- -->  <input type="text" name="beneficiary[flat]" placeholder="flat">
-<!--   <label for="house_number"></label>
- -->  <input type="text" name="beneficiary[house_number]" placeholder="house_number">
-<!--   <label for="street"></label>
- -->  <input type="text" name="beneficiary[street]" placeholder="street">
-<!--   <label for="city"></label>
- -->  <input type="text" name="beneficiary[city]" placeholder="city">
-<!--   <label for="region"></label>
- -->  <input type="text" name="beneficiary[region]" placeholder="region">
-<!--   <label for="post_code"></label>
- -->  <input type="text" name="beneficiary[post_code]" placeholder="post_code">
-<!--   <label for="country"></label>
- -->  <input type="text" name="beneficiary[country]" placeholder="country">
-      <input type="submit">
-</form>
-
+      <div class="left-margin-10vw">
+        <label for="beneficiary[name]">Name</label>
+        <input type="text" name="beneficiary[name]" placeholder="e.g. John Smith" class="railsbank-input bottom-margin">
+        <label for="beneficiary[account_number]">Account Number</label>
+        <input type="text" name="beneficiary[account_number]" placeholder="e.g. 64042816" class="railsbank-input bottom-margin">
+        <label for="beneficiary[sort_code]">Sort Code</label>
+        <input type="text" name="beneficiary[sort_code]" placeholder="e.g. 80-56-34" class="railsbank-input bottom-margin">
+        <input type="submit" class="btn railsbank-btn">
+      </div>
+    </form>
+  </div>
+</div>
