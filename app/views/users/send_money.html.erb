@@ -1,22 +1,40 @@
-<form action="create_transfer" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <% if @beneficiary_id %>
-    <label for="name"><%= @beneficiary_name %></label>
-    <input type="text" hidden="true" name="name" value="<%= @beneficiary_name %>">
-    <input type="text" hidden="true" name="account" value="<%= @accounts.first["ledger_id"] %>">
-    <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
-  <% else %>
-    <%= link_to choose_beneficiary_path do %>
-      <div class="transaction">
-        <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
-        <div class="transaction-details">
-          <div class="transaction-inner">
-            <p class="p07 transaction-reference">Choose Beneficary</p>
-          </div>
+<div class="view-height white-rounded-top">
+  <div class="card-section">
+    <h4 class="dash-header">Account</h4>
+    <div class="card-holder">
+      <div class="small-hox-card" style="background-image: url(<%= image_path('card.png') %>">
+        <div class="small-card-head">
+          <h5 class="small-numbers">**** <%= @accounts.first["uk_account_number"].chars.last(4).join %></h5>
+          <h5 class="small-railsbank">RailsBank</h5>
         </div>
+        <h6>Balance:</h6>
+        <h5 class="small-numbers">£ <%= @accounts.first["amount"] %></h5>
       </div>
-    <% end %>
-  <% end %>
-  <input type="float" name="amount">
-  <input type="submit">
-</form>
+    </div>
+  </div>
+  <form action="create_transfer" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="left-margin-10vw">
+      <label for="amount">Amount</label>
+      <input type="float" name="amount" class="railsbank-input" placeholder="100.00">
+      <% if @beneficiary_id %>
+        <label for="name"><%= @beneficiary_name %></label>
+        <input type="text" hidden="true" name="name" value="<%= @beneficiary_name %>">
+        <input type="text" hidden="true" name="account" value="<%= @accounts.first["ledger_id"] %>">
+        <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
+      <% else %>
+        <%= link_to choose_beneficiary_path do %>
+          <div class="transaction">
+            <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;">HR</h4></div>
+            <div class="transaction-details">
+              <div class="transaction-inner">
+                <p class="p07 transaction-reference grey">Choose Beneficary</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <input type="submit" class="railsbank-btn" value="Send Money">
+    </div>
+  </form>
+</div>
