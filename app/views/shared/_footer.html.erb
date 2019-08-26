@@ -1,4 +1,4 @@
-<div class="footer">
+<!-- <div class="footer">
   <%= link_to root_path do %>
     <i class="fas fa-home"></i>
   <% end %>
@@ -10,5 +10,24 @@
   <% end %>
   <%= link_to destroy_user_session_path, method: :delete do %>
     <i class="fas fa-sign-out-alt"></i>
+  <% end %>
+</div> -->
+
+<div class="footer">
+  <%= link_to root_path do %>
+    <i class="fas fa-home"></i>
+    <p>Home</p>
+  <% end %>
+  <%= link_to send_money_path do  %>
+    <i class="fas fa-credit-card"></i>
+    <p>Transfers</p>
+  <% end %>
+  <%= link_to choose_beneficiary_path do %>
+    <i class="fas fa-user-plus"></i>
+    <p>Beneficiary</p>
+  <% end %>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <i class="fas fa-sign-out-alt"></i>
+    <p>Logout</p>
   <% end %>
 </div>
