@@ -61,11 +61,13 @@
     color: white;
 
     &:hover {
-      background-color: #FF0040;
+      background-color: #31B1CC;
+      color: white;
     }
 
     &:focus {
       outline: none;
+      color: white;
     }
 
     &:active {
