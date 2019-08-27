@@ -17,15 +17,17 @@
     <div class="left-margin-10vw">
       <input type="float" name="amount" class="railsbank-input" placeholder="100.00">
       <% if @beneficiary_id %>
-        <div class="transaction">
-          <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;"><%= ApplicationRecord.to_initials(@beneficiary_name) %></h4></div>
-          <div class="transaction-details">
-            <div class="transaction-inner">
-              <p class="p07 transaction-reference grey"><%= @beneficiary_name %></p>
-              <p class="p07 transaction-reference light-gray"><%= @account %>|<%= @sort %> </p>
+        <%= link_to choose_beneficiary_path do  %>
+          <div class="transaction">
+            <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;"><%= ApplicationRecord.to_initials(@beneficiary_name) %></h4></div>
+            <div class="transaction-details">
+              <div class="transaction-inner">
+                <p class="p07 transaction-reference grey"><%= @beneficiary_name %></p>
+                <p class="p07 transaction-reference light-gray"><%= @account %>|<%= @sort %> </p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
         <input type="text" hidden="true" name="name" value="<%= @beneficiary_name %>">
         <input type="text" hidden="true" name="account" value="<%= @accounts.first["ledger_id"] %>">
         <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
