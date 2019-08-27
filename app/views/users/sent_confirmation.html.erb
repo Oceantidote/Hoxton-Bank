@@ -1,13 +1,12 @@
-
-
-
-<% if @transaction["transaction_status"] == "transaction-status-declined" %>
-  <%= render "shared/failure", transaction: @transaction %>
-<% elsif @transaction["transaction_status"] == "transaction-status-pending" %>
-  <%= render "shared/success", transaction: @transaction %>
-<% else %>
-  <%= render "shared/success", transaction: @transaction %>
-<% end %>
-<h6>Remaining Balance - £ <%= @ledger["amount"] %></h6>
+<div class="view-height white-rounded-top">
+  <% if @transaction["transaction_status"] == "transaction-status-declined" %>
+    <%= render "shared/failure", transaction: @transaction %>
+  <% elsif @transaction["transaction_status"] == "transaction-status-pending" %>
+    <%= render "shared/success", transaction: @transaction %>
+  <% else %>
+    <%= render "shared/success", transaction: @transaction %>
+  <% end %>
+  <h6>Remaining Balance - <span slass="numbers">£ <%= @ledger["amount"] %></span></h6>
+</div>
 
 

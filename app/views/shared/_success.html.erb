@@ -1,1 +1,8 @@
-<h5>£ <%= transaction["amount"] %> sent to <%= transaction["transaction_printout"]["beneficiaryname"] %> </h5>
+<div class="card-section">
+  <h4 class="dash-header">Payment Success!</h4>
+</div>
+<div class="choose-section">
+  <h5 class="numbers tc">£ <%= transaction["amount"] %></h5>
+  <h6 class="tc">sent to</h6>
+  <h5 class="tc"><%= transaction["transaction_printout"]["beneficiaryname"] %></h5>
+</div>
