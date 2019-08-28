@@ -9,6 +9,18 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.to_money(unit)
+    split = unit.to_s.chars
+    if unit < 10
+      "00.0" + unit.to_s
+    elsif unit < 100
+      "00." + unit.to_s
+    else
+      unit.to_s[0..-3] + "." +  unit.to_s[-2..-1]
+    end
+  end
+
+  def self.trans_money(unit)
+    split = unit.to_s.chars
     if unit < 10
       "00.0" + unit.to_s
     elsif unit < 100

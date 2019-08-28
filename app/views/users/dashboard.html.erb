@@ -12,7 +12,7 @@
               </div>
               <h5 class="railsbank">RailsBank</h5>
             </div>
-            <h5 class="numbers mt-4">£ <%= account[:ledger]["amount"] %></h5>
+            <h5 class="numbers mt-4">£ <%= account[:ledger]["amount"].to_s + ".00" %></h5>
           </div>
         </div>
       <% end %>
