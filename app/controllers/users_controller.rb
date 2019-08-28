@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def send_money
-    @beneficiary_id = params["beneficiary_id"]
-    @beneficiary_name = params["person"] ? params["person"]["name"] : params["name"]
+    @beneficiary_name = params["beneficiary"] ? params["beneficiary"]["person"]["name"] : params["name"]
+    @beneficiary_id = params["beneficiary"] ? params["beneficiary"]["beneficiary_id"] : params["beneficiary_id"]
     @sort = params["uk_sort_code"]
     @account = params["uk_account_number"]
     @accounts = current_user.ledgers.map do |ledger|
