@@ -19,13 +19,14 @@
     <div class="left-margin-10vw">
       <label for="amount" class="d-block">Amount</label>
       <% if params['amount'] != nil %>
-        <input type="float" name="amount" class="railsbank-input" placeholder="£0.00" id="amount" value=<%= params['amount'] %>>
+        <input type="float" name="amount" class="railsbank-input mb-0" placeholder="£0.00" id="amount" value=<%= params['amount'] %>>
       <% else %>
-        <input type="float" name="amount" class="railsbank-input" placeholder="£0.00" id="amount">
+        <input type="float" name="amount" class="railsbank-input mb-0" placeholder="£0.00" id="amount">
       <% end %>
+      <p id="inputError" class="input-error invisible mb-0">Please enter a valid number</p>
       <% if @beneficiary_id %>
         <a href="#" id="redirectLink" data-beneficiary=<%= @beneficiary_id %>>
-          <div class="transaction">
+          <div class="transaction mt-3">
             <div class="transaction-image">
               <h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold"><%= ApplicationRecord.to_initials(@beneficiary_name) %></h4>
             </div>
@@ -42,7 +43,7 @@
         <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
       <% else %>
         <a href="#" id="redirectLink">
-          <div class="transaction">
+          <div class="transaction mt-3">
             <div class="transaction-image"><i class="fas fa-plus choose-benficiary"></i></div>
             <div class="transaction-details">
               <div class="transaction-inner">
@@ -61,6 +62,7 @@
   const redirectLink = document.getElementById("redirectLink")
   const amount = document.getElementById("amount")
   const sendBtn = document.getElementById("sendBtn")
+  const inputError = document.getElementById("inputError")
 
   if(amount.value > 0 && redirectLink.dataset.beneficiary) {
     sendBtn.classList.remove('disabled')
@@ -68,6 +70,9 @@
   }
 
   amount.addEventListener('blur', () => {
+    if(isNaN(amount.value)) {
+      inputError.classList.remove('invisible')
+    }
     if(amount.value > 0 && redirectLink.dataset.beneficiary) {
       sendBtn.classList.remove('disabled')
       sendBtn.disabled = false
