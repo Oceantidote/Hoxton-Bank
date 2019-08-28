@@ -17,9 +17,14 @@
   <form action="create_transfer" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="left-margin-10vw">
-      <label for="beneficiary" class="d-block">Beneficiary</label>
+      <label for="amount" class="d-block">Amount</label>
+      <% if params['amount'] != nil %>
+        <input type="float" name="amount" class="railsbank-input" placeholder="£0.00" id="amount" value=<%= params['amount'] %>>
+      <% else %>
+        <input type="float" name="amount" class="railsbank-input" placeholder="£0.00" id="amount">
+      <% end %>
       <% if @beneficiary_id %>
-        <%= link_to choose_beneficiary_path do  %>
+        <a href="#" id="test">
           <div class="transaction">
             <div class="transaction-image">
               <h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold"><%= ApplicationRecord.to_initials(@beneficiary_name) %></h4>
@@ -31,12 +36,12 @@
               </div>
             </div>
           </div>
-        <% end %>
+        </a>
         <input type="text" hidden="true" name="name" value="<%= @beneficiary_name %>">
         <input type="text" hidden="true" name="account" value="<%= @accounts.first["ledger_id"] %>">
         <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
       <% else %>
-        <%= link_to choose_beneficiary_path(amount: 2000) do %>
+        <a href="#" id="test">
           <div class="transaction">
             <div class="transaction-image"><i class="fas fa-plus choose-benficiary"></i></div>
             <div class="transaction-details">
@@ -45,12 +50,19 @@
               </div>
             </div>
           </div>
-        <% end %>
+        </a>
       <% end %>
-      <label for="amount" class="d-block">Amount</label>
-      <input type="float" name="amount" class="railsbank-input" placeholder="£0.00">
       <input type="submit" class="btn railsbank-btn" value="Send Money">
     </div>
   </form>
 </div>
 
+<script>
+  document.getElementById("test").addEventListener('click', () => {
+    let url = window.location.href.replace('send_money', 'choose_beneficiary');
+    const amount = document.getElementById("amount").value
+    const redirect = url += `?amount=${amount}`
+    window.open(redirect, '_self');
+    // window.location.replace(redirect)
+  })
+</script>
