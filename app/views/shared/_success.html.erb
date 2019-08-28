@@ -2,7 +2,16 @@
   <h4 class="dash-header">Payment Success!</h4>
 </div>
 <div class="choose-section">
+  <div class="forgot-button">
+    <i class="fas fa-check-circle blue bigicon"></i>
+  </div>
   <h5 class="numbers tc">£ <%= ApplicationRecord.to_money(transaction["amount"]) %></h5>
-  <h6 class="tc">sent to</h6>
-  <h5 class="tc"><%= transaction["transaction_printout"]["beneficiaryname"] %></h5>
+  <h6 class="tc lighter mv">sent to</h6>
+  <h5 class="tc"><strong><%= transaction["transaction_printout"]["beneficiaryname"] %></strong></h5>
+  <h6 class="tc numbers lighter mv"><%= ApplicationRecord.to_sort(@transaction["payment_info"]["domesticInstructionAccount"]["sortCode"]) %>|<%= @transaction["payment_info"]["domesticInstructionAccount"]["accountNumber"] %></h6>
+  <h6 class="tc">Remaining Balance:</h6>
+  <h6 class="tc"><span class="numbers">£ <%= ApplicationRecord.to_money(@ledger["amount"]) %></span></h6>
+  <%= link_to send_money_path do %>
+    <div class="btn railsbank-btn">Make another payment</div>
+  <% end %>
 </div>

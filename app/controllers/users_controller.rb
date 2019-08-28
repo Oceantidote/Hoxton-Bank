@@ -88,7 +88,7 @@ class UsersController < ApplicationController
 
   def sent_confirmation
     id = params["transaction_id"]
-    sleep(0.1)
+    sleep(0.3)
     @transaction = get_transaction(id)
     ledger_id = @transaction["from_ledger_id"]
     begin
@@ -118,6 +118,7 @@ class UsersController < ApplicationController
       response = RestClient.post('https://play.railsbank.com/v1/customer/ledgers', payload.to_json, headers)
       body = JSON.parse(response.body)
       Ledger.create(user: current_user, api_id: body['ledger_id'])
+      sleep(1)
       redirect_to dashboard_path
     rescue => e
       puts e.reponse.body
