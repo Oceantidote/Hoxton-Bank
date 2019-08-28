@@ -11,6 +11,6 @@
   <h6 class="tc">Remaining Balance:</h6>
   <h6 class="tc"><span class="numbers">£ <%= @ledger["amount"].to_s + ".00" %></span></h6>
   <%= link_to send_money_path do %>
-    <div class="btn railsbank-btn">Make another payment</div>
+    <div class="btn railsbank-btn railsbank-position">Make another payment</div>
   <% end %>
 </div>
