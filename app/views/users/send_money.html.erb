@@ -6,11 +6,11 @@
         <div class="small-card-head">
           <div>
             <h5 class="small-numbers"><%= @accounts.first["uk_account_number"] %></h5>
-            <h5 class="small-sort-code"><%= @accounts.first["uk_sort_code"] %></h5>
+            <h5 class="small-sort-code"><%= ApplicationRecord.to_sort(@accounts.first["uk_sort_code"]) %></h5>
           </div>
           <h5 class="small-railsbank">RailsBank</h5>
         </div>
-        <h5 class="small-numbers mt-4">£ <%= @accounts.first["amount"] %></h5>
+        <h5 class="small-numbers mt-4">£ <%= @accounts.first["amount"].to_s + ".00" %></h5>
       </div>
     </div>
   </div>

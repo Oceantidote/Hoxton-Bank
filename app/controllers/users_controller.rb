@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   def send_money
     @beneficiary_name = params["beneficiary"] ? params["beneficiary"]["person"]["name"] : params["name"]
     @beneficiary_id = params["beneficiary"] ? params["beneficiary"]["beneficiary_id"] : params["beneficiary_id"]
-    @sort = params["beneficiary"] ? params['beneficiary']["uk_sort_code"] : ''
-    @account = params["beneficiary"] ? params['beneficiary']["uk_account_number"] : ''
+    @sort = params['beneficiary'] ? params['beneficiary']["uk_sort_code"] : params['sort']
+    @account = params['beneficiary'] ? params['beneficiary']["uk_account_number"] : params['account']
     @accounts = current_user.ledgers.map do |ledger|
       JSON.parse(RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger.api_id}", headers))
     end
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     begin
       response = RestClient.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
       id = JSON.parse(response.body)["beneficiary_id"]
-      redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&beneficiary_id=#{id}"
+      redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&beneficiary_id=#{id}&account=#{beneficiary_params[:account_number]}&sort=#{beneficiary_params[:sort_code]}"
     rescue => e
       puts e.response.body
     end
