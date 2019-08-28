@@ -15,7 +15,7 @@
     <% end %>
     <h6>Beneficiaries</h6>
     <% @beneficiaries.each do |beneficiary| %>
-      <%= link_to send_money_path(beneficiary: beneficiary, amount: params['amount']) do  %>
+      <%= link_to send_money_path(beneficiary: beneficiary, amount: params['amount']), method: :post do  %>
         <div class="transaction mb0">
 
           <div class="transaction-image"><h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold;"><%= ApplicationRecord.to_initials(beneficiary["person"]["name"]) %></h4></div>

@@ -37,9 +37,7 @@ class UsersController < ApplicationController
     begin
       response = RestClient.post("https://play.railsbank.com/v1/customer/transactions", to_upload.to_json, headers)
       transaction = JSON.parse(response.body)
-      to_upload[:name] = params[:name]
-      to_upload[:transaction_id] = transaction["transaction_id"]
-      redirect_to sent_confirmation_path(to_upload)
+      redirect_to sent_confirmation_path(id: transaction["transaction_id"] )
     rescue => e
       puts e.response.body
     end
@@ -80,14 +78,14 @@ class UsersController < ApplicationController
     begin
       response = RestClient.post("https://play.railsbank.com/v1/customer/beneficiaries", to_upload.to_json, headers)
       id = JSON.parse(response.body)["beneficiary_id"]
-      redirect_to send_money_path + "?name=#{beneficiary_params[:name]}&beneficiary_id=#{id}&account=#{beneficiary_params[:account_number]}&sort=#{beneficiary_params[:sort_code]}"
+      redirect_post(send_money_path, params: { beneficiary_id: id, name: beneficiary_params[:name], account: beneficiary_params[:account_number], sort: beneficiary_params[:sort_code] }, options: {})
     rescue => e
       puts e.response.body
     end
   end
 
   def sent_confirmation
-    id = params["transaction_id"]
+    id = params[:id]
     sleep(0.3)
     @transaction = get_transaction(id)
     ledger_id = @transaction["from_ledger_id"]
