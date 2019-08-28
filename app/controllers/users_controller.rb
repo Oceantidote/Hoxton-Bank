@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   def send_money
     @beneficiary_name = params["beneficiary"] ? params["beneficiary"]["person"]["name"] : params["name"]
     @beneficiary_id = params["beneficiary"] ? params["beneficiary"]["beneficiary_id"] : params["beneficiary_id"]
-    @sort = params["uk_sort_code"]
-    @account = params["uk_account_number"]
+    @sort = params['beneficiary']["uk_sort_code"]
+    @account = params['beneficiary']["uk_account_number"]
     @accounts = current_user.ledgers.map do |ledger|
       JSON.parse(RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger.api_id}", headers))
     end
