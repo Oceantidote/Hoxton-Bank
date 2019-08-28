@@ -38,4 +38,9 @@ class ApplicationRecord < ActiveRecord::Base
     split = name.split.map { |word| word.chars.first.upcase }
     split.length > 2 ? split[0] + split[-1] : split.join
   end
+
+  def self.to_sort(number)
+    string = number.to_s.chars
+    "#{string[0..1].join}-#{string[2..3].join}-#{string[4..5].join}"
+  end
 end

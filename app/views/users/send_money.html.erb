@@ -32,6 +32,7 @@
             <div class="transaction-details">
               <div class="transaction-inner">
                 <p class="p07 transaction-reference grey"><%= @beneficiary_name %></p>
+                <p class="p07 transaction-reference light-gray"><%= @account %>|<%= ApplicationRecord.to_sort(@sort) %> </p>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@
             <div class="card-head">
               <div>
                 <h5 class="numbers"><%= account[:uk_id] %></h5>
-                <h5 class="sort-code"><%= account[:ledger]["uk_sort_code"] %></h5>
+                <h5 class="sort-code"><%= ApplicationRecord.to_sort(account[:ledger]["uk_sort_code"]) %></h5>
               </div>
               <h5 class="railsbank">RailsBank</h5>
             </div>
@@ -26,11 +26,15 @@
   <h4 class="trans-header">Transactions</h4>
 </div>
 <div id="trans-cont" class="transaction-cont" style="height: innerHeight;">
-  <% @accounts.first[:transactions].reverse.each do |transaction| %>
-    <% if transaction["transaction_type"] == "transaction-type-receive" %>
-      <%= render "shared/credit", transaction: transaction %>
-    <% else %>
-      <%= render "shared/debit", transaction: transaction %>
+  <% if @accounts.first[:transactions].length == 0 %>
+    <h6>No transactions yet!</h6>
+  <% else %>
+    <% @accounts.first[:transactions].reverse.each do |transaction| %>
+      <% if transaction["transaction_type"] == "transaction-type-receive" %>
+        <%= render "shared/credit", transaction: transaction %>
+      <% else %>
+        <%= render "shared/debit", transaction: transaction %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

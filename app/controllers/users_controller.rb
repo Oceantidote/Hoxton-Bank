@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   def send_money
     @beneficiary_name = params["beneficiary"] ? params["beneficiary"]["person"]["name"] : params["name"]
     @beneficiary_id = params["beneficiary"] ? params["beneficiary"]["beneficiary_id"] : params["beneficiary_id"]
+    @sort = params["uk_sort_code"]
+    @account = params["uk_account_number"]
     @accounts = current_user.ledgers.map do |ledger|
       JSON.parse(RestClient.get("https://play.railsbank.com/v1/customer/ledgers/#{ledger.api_id}", headers))
     end
@@ -86,7 +88,7 @@ class UsersController < ApplicationController
 
   def sent_confirmation
     id = params["transaction_id"]
-    sleep(0.1)
+    sleep(0.3)
     @transaction = get_transaction(id)
     ledger_id = @transaction["from_ledger_id"]
     begin
@@ -116,6 +118,7 @@ class UsersController < ApplicationController
       response = RestClient.post('https://play.railsbank.com/v1/customer/ledgers', payload.to_json, headers)
       body = JSON.parse(response.body)
       Ledger.create(user: current_user, api_id: body['ledger_id'])
+      sleep(1)
       redirect_to dashboard_path
     rescue => e
       puts e.reponse.body
