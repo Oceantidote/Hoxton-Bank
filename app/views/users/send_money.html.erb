@@ -69,7 +69,7 @@
     sendBtn.disabled = false
   }
 
-  amount.addEventListener('blur', () => {
+  amount.addEventListener('keyup', () => {
     if(isNaN(amount.value)) {
       inputError.classList.remove('invisible')
     }
