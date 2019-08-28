@@ -119,7 +119,7 @@ class UsersController < ApplicationController
       sleep(1)
       redirect_to dashboard_path
     rescue => e
-      puts e.reponse.body
+      puts e.response.body
     end
   end
 
