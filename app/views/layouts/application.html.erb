@@ -5,31 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hoxton Bank</title>
     <script src="https://kit.fontawesome.com/ea437f64d7.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
     <%= favicon_link_tag 'favicon.png' %>
   </head>
   <body>
     <%= render 'shared/flashes' %>
-    <% if controller_name == "pages" %>
-      <%= yield %>
-    <% else %>
-      <%= render "shared/header" %>
-      <% if controller_name == "sessions" || controller_name == "registrations" %>
-        <div id="hold" class="flex view-height">
-      <% else %>
-        <div id="hold" class="view-height">
-      <% end %>
-        <%= yield %>
-      </div>
-      <% if controller_name == "sessions" || controller_name == "registrations" %>
-
-      <% else %>
-        <%= render "shared/footer" %>
-      <% end %>
-    <% end %>
+    <%= yield %>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

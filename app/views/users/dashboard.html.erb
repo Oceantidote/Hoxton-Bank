@@ -1,69 +1,88 @@
-<div id="carousel-holder" class="carousel-holder">
-  <h4 class="dash-header">Accounts</h4>
-  <div id="carouselExampleIndicators" class="carousel slide" data-interval="7500" data-ride="carousel">
-    <div class="carousel-inner">
-      <% @accounts.each_with_index do |account, index| %>
-        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-          <div class="hox-card" style="background-image: url(<%= image_path('card.png') %>">
-            <div class="card-head">
-              <div>
-                <h5 class="numbers"><%= account[:uk_id] %></h5>
-                <h5 class="sort-code"><%= ApplicationRecord.to_sort(account[:ledger]["uk_sort_code"]) %></h5>
-              </div>
-              <h5 class="railsbank">RailsBank</h5>
-            </div>
-            <h5 class="numbers mt-4">£ <%= account[:ledger]["amount"].to_s + ".00" %></h5>
+<div class="dashboard">
+  <div class="dashboard-banner">
+    <h2 class="white text-center pt-5">£10,123.00 <i class="fas fa-chevron-down" style="font-size: 14px"></i></h2>
+    <p class="white text-center">British GBP <%= image_tag "gbp.png", alt: "alttext", class: "currency-flag" %></p>
+    <div class="d-flex w-100 justify-content-around mt-5 pb-3 px-4">
+      <div class="dashboard-action">
+        <div class="dashboard-action-circle primary-color">
+          <i class="fas fa-plus"></i>
+        </div>
+        <p class="white small-text">Add Money</p>
+      </div>
+      <div class="dashboard-action">
+        <div class="dashboard-action-circle">
+          <i class="fas fa-exchange-alt primary-color"></i>
+        </div>
+        <p class="white small-text">Exchange</p>
+      </div>
+      <div class="dashboard-action">
+        <div class="dashboard-action-circle primary-color">
+          <i class="fas fa-info"></i>
+        </div>
+        <p class="white small-text">Details</p>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-feed">
+    <div class="feed-day mt-3">
+      <div class="day-info d-flex justify-content-between">
+        <span>Yesterday</span>
+        <span>+ £1,000</span>
+      </div>
+      <div class="transaction d-flex justify-content-between align-items-center my-2">
+        <div class="d-flex">
+          <div class="transaction-circle income">
+            <!-- Ternarary to flip income or expense class -->
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+          <div class="transaction-details">
+            <p class="m-0 primary-text small-text">Ben Fanning</p>
+            <p class="m-0 tertiary-text tiny-text">14:30</p>
+            <p class="m-0 tertiary-text tiny-text">Lunch</p>
           </div>
         </div>
-      <% end %>
+        <div class="transaction-total">
+          <span class='medium-text'>+ £1,000</span>
+        </div>
+      </div>
     </div>
-    <ol class="carousel-indicators">
-      <% @accounts.each_with_index do |account, index| %>
-        <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
-      <% end %>
-    </ol>
+    <div class="feed-day mt-3">
+      <div class="day-info d-flex justify-content-between">
+        <span>April 27</span>
+        <span>- £1,250</span>
+      </div>
+      <div class="transaction d-flex justify-content-between align-items-center my-2">
+        <div class="d-flex">
+          <div class="transaction-circle expense">
+            <!-- Ternarary to flip income or expense class -->
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+          <div class="transaction-details">
+            <p class="m-0 primary-text small-text">Phelim Dunleavy</p>
+            <p class="m-0 tertiary-text tiny-text">08:00</p>
+            <p class="m-0 tertiary-text tiny-text">Rent</p>
+          </div>
+        </div>
+        <div class="transaction-total">
+          <span class='medium-text'>- £800</span>
+        </div>
+      </div>
+      <div class="transaction d-flex justify-content-between align-items-center my-2">
+        <div class="d-flex">
+          <div class="transaction-circle expense">
+            <!-- Ternarary to flip income or expense class -->
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+          <div class="transaction-details">
+            <p class="m-0 primary-text small-text">Arthur Littmann</p>
+            <p class="m-0 tertiary-text tiny-text">11:00</p>
+            <p class="m-0 tertiary-text tiny-text">Food</p>
+          </div>
+        </div>
+        <div class="transaction-total">
+          <span class='medium-text'>- £450</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <h4 class="trans-header">Transactions</h4>
 </div>
-<div id="trans-cont" class="transaction-cont" style="height: innerHeight;">
-  <% if @accounts.first[:transactions].length == 0 %>
-    <h6>No transactions yet!</h6>
-  <% else %>
-    <% @accounts.first[:transactions].reverse.each do |transaction| %>
-      <% if transaction["transaction_type"] == "transaction-type-receive" %>
-        <%= render "shared/credit", transaction: transaction %>
-      <% else %>
-        <%= render "shared/debit", transaction: transaction %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
-<script>
-  var body_height = document.getElementsByTagName("BODY")[0].clientHeight
-  var carousel_holder_height = document.getElementById("carousel-holder").clientHeight
-  var trans_cont = document.getElementById("trans-cont")
-  var height = body_height - carousel_holder_height - 60 + 1
-  trans_cont.style.height = height + "px"
-  function resize() {
-    var resheight = body_height - carousel_holder_height - 60 + 1
-    trans_cont.style.height = resheight + "px"
-  }
-  window.onresize = resize;
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
