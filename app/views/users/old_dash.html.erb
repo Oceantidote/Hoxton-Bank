@@ -1,0 +1,56 @@
+<div id="carousel-holder" class="carousel-holder">
+  <h4 class="dash-header">Accounts</h4>
+  <div id="carouselExampleIndicators" class="carousel slide" data-interval="7500" data-ride="carousel">
+    <div class="carousel-inner">
+      <% @accounts.each_with_index do |account, index| %>
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+          <div class="hox-card" style="background-image: url(<%= image_path('card.png') %>">
+            <div class="card-head">
+              <div>
+                <h5 class="numbers"><%= account[:uk_id] %></h5>
+                <h5 class="sort-code"><%= ApplicationRecord.to_sort(account[:ledger]["uk_sort_code"]) %></h5>
+              </div>
+              <h5 class="railsbank">RailsBank</h5>
+            </div>
+            <h5 class="numbers mt-4">£ <%= account[:ledger]["amount"].to_s + ".00" %></h5>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <ol class="carousel-indicators">
+      <% @accounts.each_with_index do |account, index| %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"></li>
+      <% end %>
+    </ol>
+  </div>
+  <h4 class="trans-header">Transactions</h4>
+</div>
+<div id="trans-cont" class="transaction-cont" style="height: innerHeight;">
+  <% if @accounts == [] %>
+    <h6>No transactions yet!</h6>
+  <% elsif @accounts.first[:transactions].length == 0 %>
+    <h6>No transactions yet!</h6>
+  <% else %>
+    <% @accounts.first[:transactions].reverse.each do |transaction| %>
+      <% if transaction["transaction_type"] == "transaction-type-receive" %>
+        <%= render "shared/credit", transaction: transaction %>
+      <% else %>
+        <%= render "shared/debit", transaction: transaction %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<script>
+  var body_height = document.getElementsByTagName("BODY")[0].clientHeight
+  var carousel_holder_height = document.getElementById("carousel-holder").clientHeight
+  var trans_cont = document.getElementById("trans-cont")
+  var height = body_height - carousel_holder_height - 60 + 1
+  trans_cont.style.height = height + "px"
+  function resize() {
+    var resheight = body_height - carousel_holder_height - 60 + 1
+    trans_cont.style.height = resheight + "px"
+  }
+  window.onresize = resize;
+</script>
+
+

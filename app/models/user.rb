@@ -24,9 +24,9 @@ class User < ApplicationRecord
     }
 
     headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "API-Key #{ENV['RAILS_BANK_API_KEY']}##{ENV['RAILS_BANK_SECRET_PATTERN']}"
+      "Content-Type" => "application/json",
+      "Accept" => "application/json",
+      "Authorization" => "API-Key #{ENV['API_KEY'] + '#' + ENV['API_KEY_TWO']}"
     }
     response = RestClient.post('https://play.railsbank.com/v1/customer/endusers', payload.to_json, headers)
     body = JSON.parse(response.body)

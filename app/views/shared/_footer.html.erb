@@ -1,33 +1,24 @@
-<!-- <div class="footer">
-  <%= link_to root_path do %>
-    <i class="fas fa-home"></i>
-  <% end %>
-  <%= link_to send_money_path do  %>
-    <i class="fas fa-credit-card"></i>
-  <% end %>
-  <%= link_to choose_beneficiary_path do %>
-    <i class="fas fa-user-plus"></i>
-  <% end %>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    <i class="fas fa-sign-out-alt"></i>
-  <% end %>
-</div> -->
-
-<div class="footer">
-  <%= link_to root_path do %>
-    <i class="fas fa-home"></i>
-    <p>Home</p>
-  <% end %>
-  <%= link_to send_money_path, method: :post do  %>
-    <i class="fas fa-credit-card"></i>
-    <p>Transfers</p>
-  <% end %>
-  <%= link_to choose_beneficiary_path do %>
-    <i class="fas fa-user-plus"></i>
-    <p>Beneficiary</p>
-  <% end %>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    <i class="fas fa-sign-out-alt"></i>
-    <p>Logout</p>
-  <% end %>
-</div>
+<% if params[:controller] == 'pages' && params[:action] == 'home'%>
+  <div class="splash-footer">
+    <p class="white small-text text-center">Hoxton Digital Ltd. All Rights Reserved</p>
+  </div>
+<% else %>
+  <div class="footer">
+    <%= link_to root_path, class: "#{params[:controller] == 'users' && params[:action] == 'dashboard' ? 'active-footer' : ''}" do %>
+      <i class="fas fa-wallet"></i>
+      <p>Accounts</p>
+    <% end %>
+    <%= link_to edit_user_registration_path, class: "#{params[:controller] == 'registrations' && params[:action] == 'edit' ? 'active-footer' : ''}" do  %>
+      <i class="fas fa-user"></i>
+      <p>Profile</p>
+    <% end %>
+    <%= link_to send_money_path, class: "#{params[:controller] == 'users' && params[:action] == 'send_money' ? 'active-footer' : ''}", method: :post do %>
+      <i class="fas fa-exchange-alt"></i>
+      <p>Payments</p>
+    <% end %>
+    <%= link_to root_path, class: "#{params[:controller] == '[TODO]' && params[:action] == '[TODO]' ? 'active-footer' : ''}" do %>
+      <i class="far fa-credit-card"></i>
+      <p>Cards</p>
+    <% end %>
+  </div>
+<% end %>
