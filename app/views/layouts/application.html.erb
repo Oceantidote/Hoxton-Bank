@@ -17,7 +17,9 @@
   <body>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <% unless params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'registrations' %>
+      <%= render 'shared/footer' %>
+    <% end %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
