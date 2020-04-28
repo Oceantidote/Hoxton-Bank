@@ -25,27 +25,10 @@
   align-items: center;
 }
 
-.dashboard-feed {
-  padding: 0 20px;
-}
-
 .day-info {
   span {
     color: $text-tertiary;
     font-size: 12px;
-  }
-}
-
-.transaction-circle {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  i {
-    color: #fff;
-    font-size: 25px;
   }
 }
 
@@ -60,6 +43,4 @@
   background: $secondary;
 }
 
-.transaction-details {
-  margin-left: 10px;
-}
+
