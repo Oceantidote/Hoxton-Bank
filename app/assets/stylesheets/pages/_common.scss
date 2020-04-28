@@ -1,9 +1,17 @@
 body {
   background-color: #fff;
+  margin-bottom: 60px;
 }
 
 .primary-color {
   color: $primary !important;
+}
+
+.no-underline {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .secondary-color {
@@ -101,4 +109,18 @@ body {
   position: absolute;
   top: 13px;
   left: 7px;
+}
+
+.flex-form {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.small-flex-form {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

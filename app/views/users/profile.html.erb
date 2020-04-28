@@ -1,0 +1,40 @@
+<div class="profile-section">
+  <h2 class="primary-text mt-3"><%= current_user.full_name %></h2>
+</div>
+<div class="profile-section">
+  <p class="small-text secondary-text">Profile</p>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 no-underline" do %>
+    <i class="fas fa-user"></i>
+    <span class="small-text primary-text ml-2">Personal Details</span>
+  <% end %>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 no-underline" do %>
+    <i class="fas fa-university"></i>
+    <span class="small-text primary-text ml-2">Account Details</span>
+  <% end %>
+</div>
+<div class="profile-section">
+  <p class="small-text secondary-text">Security</p>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 no-underline" do %>
+    <i class="fas fa-lock"></i>
+    <span class="small-text primary-text ml-2">Change Password</span>
+  <% end %>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 no-underline" do %>
+    <i class="fab fa-apple"></i>
+    <span class="small-text primary-text ml-2">FaceID</span>
+  <% end %>
+</div>
+<div class="profile-section">
+  <p class="small-text secondary-text">Other</p>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 no-underline" do %>
+    <i class="fas fa-file-signature"></i>
+    <span class="small-text primary-text ml-2">Terms & Conditions</span>
+  <% end %>
+  <%= link_to destroy_user_session_path, class: "d-flex py-3 no-underline", method: :delete do %>
+    <i class="fas fa-sign-out-alt"></i>
+    <span class="small-text primary-text ml-2">Log Out</span>
+  <% end %>
+  <%= link_to edit_user_registration_path, class: "d-flex py-3 pt-5 no-underline" do %>
+    <i class="far fa-trash-alt"></i>
+    <span class="small-text primary-text ml-2">Delete Account</span>
+  <% end %>
+</div>

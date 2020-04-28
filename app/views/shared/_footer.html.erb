@@ -8,8 +8,8 @@
       <i class="fas fa-wallet"></i>
       <p>Accounts</p>
     <% end %>
-    <%= link_to edit_user_registration_path, class: "#{params[:controller] == 'registrations' && params[:action] == 'edit' ? 'active-footer' : ''}" do  %>
-      <i class="fas fa-user"></i>
+    <%= link_to profile_path, class: "#{params[:controller] == 'users' && params[:action] == 'profile' ? 'active-footer' : ''}" do  %>
+      <i class="fas fa-th-large"></i>
       <p>Profile</p>
     <% end %>
     <%= link_to send_money_path, class: "#{params[:controller] == 'users' && params[:action] == 'send_money' ? 'active-footer' : ''}", method: :post do %>
