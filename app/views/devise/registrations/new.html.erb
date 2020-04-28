@@ -1,6 +1,6 @@
-<h2 class="sign-up-header">Create Account</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex-form"}) do |f| %>
+  <h2 class="sign-up-header">Create Account</h2>
   <div class="form-inputs">
     <%= f.error_notification %>
     <%= f.input :first_name,
@@ -18,22 +18,14 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }, placeholder: "Email Address", label: false  %>
-    <div class="sign-up_password">
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" }, placeholder: "Password", label: false  %>
-    </div>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" }, placeholder: "Password Confirmation", label: false  %>
+                input_html: { autocomplete: "email" }, placeholder: "Date of Birth", label: false  %>
 
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Next Step", class: "secondary-background" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
+<%= link_to "Log in", new_session_path(resource_name) %>

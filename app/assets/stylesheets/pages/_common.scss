@@ -1,5 +1,25 @@
 .primary-color {
-  color: $primary;
+  color: $primary !important;
+}
+
+.secondary-color {
+  color: $secondary !important;
+}
+
+.tertiary-color {
+  color: $tertiary !important;
+}
+
+.primary-background {
+  background-color: $primary !important;
+}
+
+.secondary-background {
+  background-color: $secondary !important;
+}
+
+.tertiary-background {
+  background-color: $tertiary !important;
 }
 
 .white {
@@ -20,6 +40,10 @@
 
 .primary-text {
   color: $text-primary;
+}
+
+.tertiary-text {
+  color: $text-secondary;
 }
 
 .tertiary-text {
