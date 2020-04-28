@@ -1,89 +1,44 @@
-<div class="view-height white-rounded-top">
-  <div class="card-section">
-    <h4 class="dash-header">Account</h4>
-    <div class="card-holder">
-      <div class="small-hox-card" style="background-image: url(<%= image_path('card.png') %>">
-        <div class="small-card-head">
-          <div>
-            <h5 class="small-numbers"><%= @accounts.first["uk_account_number"] %></h5>
-            <h5 class="small-sort-code"><%= ApplicationRecord.to_sort(@accounts.first["uk_sort_code"]) %></h5>
-          </div>
-          <h5 class="small-railsbank">RailsBank</h5>
-        </div>
-        <h5 class="small-numbers mt-4">£ <%= @accounts.first["amount"].to_s + ".00" %></h5>
+<h1 class="text-center medium-text mt-4">Who to pay?</h1>
+<div class="horizontal-padding">
+  <div class="search-holder">
+    <input type="text" class="search-input my-2" placeholder="Search">
+    <i class="fas fa-search search-icon secondary-text"></i>
+  </div>
+  <div class="d-flex align-items-center my-3">
+    <div class="dashboard-action-circle primary-color" style="background: rgba(50,62,222,0.23)">
+      <i class="fas fa-plus"></i>
+    </div>
+    <p class="m-0 ml-2 small-text text-primary">Add Beneficiary</p>
+  </div>
+  <p class="tertiary-text small-text">Beneficiaries</p>
+  <div class="transaction transaction-divider d-flex justify-content-between align-items-center my-2">
+    <div class="d-flex">
+      <div class="transaction-circle" style="background: rgba(175,176,188,0.29)">
+        <i class="fas fa-university" style="margin-top: -3px"></i>
+      </div>
+      <div class="transaction-details">
+        <p class="m-0 primary-text small-text">Maria Therese Walter - <b>GDP</b></p>
+        <p class="m-0 tertiary-text tiny-text">Account Number: 053423812</p>
+        <p class="m-0 tertiary-text tiny-text">Sort Code: 09-11-23</p>
       </div>
     </div>
-  </div>
-  <form action="create_transfer" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <div class="left-margin-10vw">
-      <label for="amount" class="d-block">Amount</label>
-      <% if params['amount'] != nil %>
-        <input type="float" name="amount" class="railsbank-input mb-0" placeholder="£0.00" id="amount" value=<%= params['amount'] %>>
-      <% else %>
-        <input type="float" name="amount" class="railsbank-input mb-0" placeholder="£0.00" id="amount">
-      <% end %>
-      <p id="inputError" class="input-error invisible mb-0">Please enter a valid number</p>
-      <% if @beneficiary_id %>
-        <a href="#" id="redirectLink" data-beneficiary=<%= @beneficiary_id %>>
-          <div class="transaction mt-3">
-            <div class="transaction-image">
-              <h4 style="font-size:0.9rem;margin: 0;color: white;font-weight:bold"><%= ApplicationRecord.to_initials(@beneficiary_name) %></h4>
-            </div>
-            <div class="transaction-details">
-              <div class="transaction-inner">
-                <p class="p07 transaction-reference grey"><%= @beneficiary_name %></p>
-                <p class="p07 transaction-reference light-gray"><%= @account %>|<%= ApplicationRecord.to_sort(@sort) %> </p>
-              </div>
-            </div>
-          </div>
-        </a>
-        <input type="text" hidden="true" name="name" value="<%= @beneficiary_name %>">
-        <input type="text" hidden="true" name="account" value="<%= @accounts.first["ledger_id"] %>">
-        <input type="text" hidden="true" name="beneficiary" value="<%= @beneficiary_id %>">
-      <% else %>
-        <a href="#" id="redirectLink">
-          <div class="transaction mt-3">
-            <div class="transaction-image"><i class="fas fa-plus choose-benficiary"></i></div>
-            <div class="transaction-details">
-              <div class="transaction-inner">
-                <p class="p07 transaction-reference grey">Choose Beneficary</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      <% end %>
-      <input type="submit" class="btn railsbank-btn disabled railsbank-position" disabled value="Send Money" id="sendBtn">
+    <div class="transaction-total">
+      <span class='medium-text'><i class="fas fa-chevron-right secondary-text"></i></span>
     </div>
-  </form>
+  </div>
+  <div class="transaction transaction-divider d-flex justify-content-between align-items-center my-2">
+    <div class="d-flex">
+      <div class="transaction-circle" style="background: rgba(175,176,188,0.29)">
+        <i class="fas fa-university" style="margin-top: -3px"></i>
+      </div>
+      <div class="transaction-details">
+        <p class="m-0 primary-text small-text">Florence O’Fanning - <b>GDP</b></p>
+        <p class="m-0 tertiary-text tiny-text">Account Number: 053423812</p>
+        <p class="m-0 tertiary-text tiny-text">Sort Code: 09-11-23</p>
+      </div>
+    </div>
+    <div class="transaction-total">
+      <span class='medium-text'><i class="fas fa-chevron-right secondary-text"></i></span>
+    </div>
+  </div>
 </div>
-
-<script>
-  const redirectLink = document.getElementById("redirectLink")
-  const amount = document.getElementById("amount")
-  const sendBtn = document.getElementById("sendBtn")
-  const inputError = document.getElementById("inputError")
-
-  if(amount.value > 0 && redirectLink.dataset.beneficiary) {
-    sendBtn.classList.remove('disabled')
-    sendBtn.disabled = false
-  }
-
-  amount.addEventListener('keyup', () => {
-    if(isNaN(amount.value)) {
-      inputError.classList.remove('invisible')
-    }
-    if(amount.value > 0 && redirectLink.dataset.beneficiary) {
-      sendBtn.classList.remove('disabled')
-      sendBtn.disabled = false
-    }
-  })
-
-  redirectLink.addEventListener('click', () => {
-    let url = window.location.href.replace('send_money', 'choose_beneficiary');
-    const toBeSent = amount.value
-    const redirect = url += `?amount=${toBeSent}`
-    window.open(redirect, '_self');
-  })
-
-</script>

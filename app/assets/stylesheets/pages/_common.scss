@@ -1,3 +1,7 @@
+body {
+  background-color: #fff;
+}
+
 .primary-color {
   color: $primary !important;
 }
@@ -42,7 +46,7 @@
   color: $text-primary;
 }
 
-.tertiary-text {
+.secondary-text {
   color: $text-secondary;
 }
 
@@ -50,4 +54,51 @@
   color: $text-tertiary;
 }
 
+.horizontal-padding {
+  padding: 0 20px;
+}
 
+.transaction-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    color: #fff;
+    font-size: 25px;
+  }
+}
+
+.transaction-details {
+  margin-left: 10px;
+}
+
+.transaction-divider {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(175,176,188,0.29);
+}
+
+.search-holder {
+  position: relative;
+}
+
+.search-input {
+  border-radius: 20px;
+  height: 26px;
+  width: 100%;
+  border: none;
+  background: rgba(175,176,188,0.29);
+  &::placeholder {
+    padding-left: 35px;
+    font-size: 14px;
+    font-weight: lighter;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  top: 13px;
+  left: 7px;
+}
