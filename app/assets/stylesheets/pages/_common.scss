@@ -8,13 +8,6 @@ body {
   color: $primary !important;
 }
 
-.no-underline {
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .secondary-color {
   color: $secondary !important;
 }
@@ -37,6 +30,10 @@ body {
 
 .white {
   color: white;
+}
+
+.large-text {
+  font-size: 20px;
 }
 
 .medium-text {
@@ -63,6 +60,10 @@ body {
   color: $text-tertiary;
 }
 
+.lighter {
+  font-weight: 300;
+}
+
 .horizontal-padding {
   padding: 0 20px;
 }
@@ -73,6 +74,13 @@ body {
 
 .inherit-min-height {
   min-height: inherit;
+}
+
+.no-underline {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .transaction-circle {
@@ -132,4 +140,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+// ===================
+// Bootstrap Overrides
+// ===================
+
+.nav-item {
+  width: 50% !important;
+  text-align: center;
+  color: rgba(175,176,188,0.29) !important;
+  background: #fff !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(175,176,188,0.29) !important;
+  &.active {
+    color: $primary !important;
+    border-bottom: 1px solid $primary !important;
+  }
 }

@@ -1,0 +1,27 @@
+.account-details-banner {
+  .background-header {
+    height: 125px;
+    background: linear-gradient(to bottom, $primary, $secondary);
+    opacity: 1;
+  }
+  .details-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .account-details-currency-flag {
+    width: 80px;
+    position: absolute;
+    top: -40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+}
+
+.account-details-card {
+  border: 1px solid rgba(175,176,188,0.29);
+  margin: 20px;
+  padding: 10px;
+}
+

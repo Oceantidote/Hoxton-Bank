@@ -1,0 +1,60 @@
+<div class="account-details-banner">
+  <div class="background-header"></div>
+  <div class="details-header">
+    <%= image_tag "gbp.png", alt: "alttext", class: "account-details-currency-flag" %>
+    <h2 class="primary-text mt-5">£10,123.00</h2>
+    <p class="small-text lighter primary-text">GBP Account</p>
+    <div class="d-flex w-50 justify-content-between">
+      <div class="dashboard-action">
+        <div class="dashboard-action-circle primary-background">
+          <i class="fas fa-exchange-alt white"></i>
+        </div>
+        <p class="primary-color small-text">Exchange</p>
+      </div>
+      <div class="dashboard-action">
+        <div class="dashboard-action-circle primary-background">
+          <i class="fas fa-file-invoice-dollar white"></i>
+        </div>
+        <p class="primary-color small-text">Statements</p>
+      </div>
+    </div>
+  </div>
+</div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-local-tab" data-toggle="tab" href="#nav-local" role="tab" aria-controls="nav-local" aria-selected="true">Local</a>
+    <a class="nav-item nav-link" id="nav-sepa-tab" data-toggle="tab" href="#nav-sepa" role="tab" aria-controls="nav-sepa" aria-selected="false">SEPA</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-local" role="tabpanel" aria-labelledby="nav-local-tab">
+    <p class="small-text tertiary-text text-center my-3">For domestic transfers</p>
+    <div class="account-details-card">
+      <p class="small-text tertiary-text m-0 mt-3">Beneficiary</p>
+      <p class="medium-text primary-text m-0">Ben Fanning</p>
+      <div class="d-flex justify-content-between my-3">
+        <div>
+          <p class="small-text tertiary-text m-0">Account Number</p>
+          <p class="medium-text primary-text m-0">04344342</p>
+        </div>
+        <div>
+          <p class="small-text tertiary-text m-0">Sort Code</p>
+          <p class="medium-text primary-text m-0">04-00-33</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-sepa" role="tabpanel" aria-labelledby="nav-sepa-tab">
+    <p class="small-text tertiary-text text-center my-3">For European transfers</p>
+    <div class="account-details-card">
+      <p class="small-text tertiary-text m-0 mt-3">Beneficiary</p>
+      <p class="medium-text primary-text m-0">Ben Fanning</p>
+      <div class="my-3">
+        <p class="small-text tertiary-text m-0">IBAN</p>
+        <p class="medium-text primary-text m-0">GB81 HXNB 0099 5577 3483 23</p>
+      </div>
+      <p class="small-text tertiary-text m-0">BIC</p>
+      <p class="medium-text primary-text m-0">HXBNGB20</p>
+    </div>
+  </div>
+</div>
