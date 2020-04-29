@@ -1,57 +1,19 @@
-.railsbank-btn {
-  width: 80vw;
-  background-color: #31B1CC;
-  text-align: center;
-  margin: 1.5vh 0;
-  padding: 10px 0;
-  border-radius: 50px;
-  color: white;
+.hb-button {
+  border-radius: 25px;
+  width: 298px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   &:hover {
+    text-decoration: none;
+  }
+  p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
     color: #fff;
-  }
-}
-
-.railsbank-position {
-  position: absolute;
-  bottom: 10vh;
-}
-
-.login-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  & a {
-    width: 80vw;
-    background-color: #FF2D62;
-    border-radius: 50px;
-    color: white;
-    box-shadow: 0px 8px 15px rgba(122, 0, 0, 0.1);
-    margin: 5px 0;
-    padding: 10px 0;
-    text-align: center;
-  }
-}
-
-.forgot-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  & a {
-    width: 80vw;
-    background-color: transparent;
-    text-align: center;
-    margin: 1.5vh 0;
-    padding: 10px 0;
-    border-radius: 50px;
-    border: 1px solid white;
-    color: white;
-
-    &:active {
-      color: white;
-    }
+    text-decoration: none;
   }
 }

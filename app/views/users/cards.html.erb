@@ -1,0 +1,39 @@
+<% if 1 == 1 %>
+  <div class="d-flex justify-content-between flex-column inherit-min-height">
+    <div id="carouselExampleIndicators" class="carousel slide mt-5" data-interval="false" >
+      <div class="carousel-inner custom-carousel-overrides">
+        <div class="carousel-item rotate90 active">
+          <div class="bank-card mx-auto">
+            <span class="bank-name">Hoxton Bank</span>
+            <span class="card-number">43488 47278 2059</span>
+            <span class="sort-code">09-11-23</span>
+            <span class="cardholder">Ben Fanning</span>
+            <%= image_tag "bank.png", alt: "alttext", class: "bank-logo" %>
+            <%= image_tag "mastercard.png", alt: "alttext", class: "issuer" %>
+          </div>
+        </div>
+        <div class="carousel-item rotate90">
+          <div class="bank-card mx-auto">
+            <span class="bank-name">Mountain Credit</span>
+            <span class="card-number">43488 47278 2059</span>
+            <span class="sort-code">22-00-23</span>
+            <span class="cardholder">Ben Fanning</span>
+            <%= image_tag "mountains.png", alt: "alttext", class: "bank-logo" %>
+            <%= image_tag "mastercard.png", alt: "alttext", class: "issuer" %>
+          </div>
+        </div>
+      </div>
+      <ol class="carousel-indicators card-carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      </ol>
+    </div>
+    <div class="hb-button primary-background mx-auto mb-5">
+      <p>Get Physical Card</p>
+    </div>
+  </div>
+<% else %>
+  <div class="new-card">
+
+  </div>
+<% end %>

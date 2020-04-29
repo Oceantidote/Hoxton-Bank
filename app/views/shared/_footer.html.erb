@@ -16,7 +16,7 @@
       <i class="fas fa-exchange-alt"></i>
       <p>Payments</p>
     <% end %>
-    <%= link_to root_path, class: "#{params[:controller] == '[TODO]' && params[:action] == '[TODO]' ? 'active-footer' : ''}" do %>
+    <%= link_to cards_path, class: "#{params[:controller] == 'users' && params[:action] == 'cards' ? 'active-footer' : ''}" do %>
       <i class="far fa-credit-card"></i>
       <p>Cards</p>
     <% end %>
