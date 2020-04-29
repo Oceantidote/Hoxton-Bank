@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   get "profile", to: "users#profile"
   get "cards", to: "users#cards"
   get "account", to: "users#account"
+  get "statements", to: "users#statements"
+  get "account_details", to: "users#account_details"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
